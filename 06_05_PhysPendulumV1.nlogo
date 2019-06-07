@@ -83,7 +83,7 @@ to go
   if(period != 0) [
     set theta (180 - 5 * cos(omega *(ticks)) )
     ask turtle 0 [set heading theta]
-    set potentialE totalMass * 9.81 * (1 - com * cos(theta))
+    set potentialE totalMass * 9.81 * (1 - com * cos(180 - theta))
     set KE (PEi - potentialE)
     tick-advance 0.001
   ]
