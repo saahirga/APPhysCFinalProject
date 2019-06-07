@@ -22,7 +22,7 @@ to setup
   ask turtle 0 [create-link-to turtle 4 [tie] ]
   ask turtle 0 [create-link-to turtle 5 [tie] ]
 
-  set potentialE ( (pMass0 + pMass1 + pMass2 + pMass3) * 9.81 * (1 - com * cos(theta)))
+  set potentialE ( (pMass0 + pMass1 + pMass2 + pMass3) * g * (1 - com * cos(theta)))
   set KE 0
   set PEi potentialE
 end
@@ -66,7 +66,7 @@ to pivot-setup
   set com (pMass0 * pos0 + pMass1 * pos1 + pMass2 * pos2 + pMass3 * pos3) / (totalMass)
   set rotInertia (pMass0 * pos0 * pos0 + pMass1 * pos1 * pos1 + pMass2 * pos2 * pos2 + pMass3 * pos3 * pos3)
   if (rotInertia = 0) [set omega 1]
-  if (rotInertia != 0) [set omega sqrt(com * totalMass * 9.81 / rotInertia) ]
+  if (rotInertia != 0) [set omega sqrt(com * totalMass * g / rotInertia) ]
   set shape "circle"
   if (rotInertia = 0) [set period 0]
   if(rotInertia != 0) [set period 2 * pi / omega]
@@ -83,7 +83,7 @@ to go
   if(period != 0) [
     set theta (180 - 5 * cos(omega *(ticks)) )
     ask turtle 0 [set heading theta]
-    set potentialE totalMass * 9.81 * (1 - com * cos(180 - theta))
+    set potentialE totalMass * g * (1 - com * cos(180 - theta))
     set KE (PEi - potentialE)
     tick-advance 0.001
   ]
@@ -364,6 +364,16 @@ totalMass
 17
 1
 11
+
+CHOOSER
+1088
+104
+1226
+149
+g
+g
+0.7 1.6 3.7 8.9 9.8 10.4 11 25 275
+8
 
 @#$#@#$#@
 ## WHAT IS IT?
